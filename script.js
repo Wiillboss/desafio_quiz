@@ -8,10 +8,10 @@ function showQuestion() {
     if(questions[currentQuestion]){
         let q = questions[currentQuestion];
 
-        let pct = (currentQuestion / questions.length)*100;
+        let pct = Math.floor((currentQuestion / questions.length)*100);
 
         document.querySelector('.progress--bar').style.width = `${pct}%`;
-        document.querySelector9('.scorePct').style.color = '#FF0000';
+        document.querySelector('.scorePct').style.color = '#FF0000';
 
         document.querySelector('.scoreArea').style.display = 'none';
         document.querySelector('.questionArea').style.display = 'block';
@@ -30,7 +30,7 @@ function showQuestion() {
         })
 
     }else{
-
+        finishQuiz();
     }
 }
 
@@ -43,4 +43,9 @@ function optionClickEvent(e) {
 
     currentQuestion++;
     showQuestion();
+}
+
+function finishQuiz() {
+    document.querySelector('.scoreArea').style.display = 'block';
+    document.querySelector('.questionArea').style.display = 'none';   
 }
