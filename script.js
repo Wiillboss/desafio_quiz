@@ -1,5 +1,5 @@
 let currentQuestion = 0;
-
+let correctAnswers = 0;
 showQuestion();
 
 
@@ -7,6 +7,11 @@ showQuestion();
 function showQuestion() {
     if(questions[currentQuestion]){
         let q = questions[currentQuestion];
+
+        let pct = (currentQuestion / questions.length)*100;
+
+        document.querySelector('.progress--bar').style.width = `${pct}%`;
+        document.querySelector9('.scorePct').style.color = '#FF0000';
 
         document.querySelector('.scoreArea').style.display = 'none';
         document.querySelector('.questionArea').style.display = 'block';
@@ -30,5 +35,12 @@ function showQuestion() {
 }
 
 function optionClickEvent(e) {
-    console.log("Clicou em", e.target.getAttribute('data-op'));
+    let clickdOptions = parseInt(e.target.getAttribute('data-op'));
+
+    if(questions[currentQuestion].answer === clickdOptions){
+        correctAnswers++;
+    }
+
+    currentQuestion++;
+    showQuestion();
 }
