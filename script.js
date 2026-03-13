@@ -46,6 +46,23 @@ function optionClickEvent(e) {
 }
 
 function finishQuiz() {
+    let points = Math.floor((correctAnswers/questions.length)* 100);
+    
+    if(points < 30){
+        document.querySelector('.scoreText1').innerHTML = 'Ta ruim em?!';
+        document.querySelector('.scorePct').style.color = '#FF0000';
+    } else if(points >= 30 && points < 70 ){
+        document.querySelector('.scoreText1').innerHTML = 'Muito bom!';
+        document.querySelector('.scorePct').style.color = '#FFF000';
+    } else if(points >=  70 ){
+        document.querySelector('.scoreText1').innerHTML = 'Parabéns!';
+        document.querySelector('.scorePct').style.color = '#0D630D';
+    }
+
+    document.querySelector('.scorePct').innerHTML = `Acertou ${points}%`;
+    document.querySelector('.scoreText2').innerHTML = `Você respondeu ${questions.length} questôes e acertou ${correctAnswers}%`;
+    
     document.querySelector('.scoreArea').style.display = 'block';
-    document.querySelector('.questionArea').style.display = 'none';   
+    document.querySelector('.questionArea').style.display = 'none';
+    document.querySelector('.progress--bar').style.width = `100%`;
 }
