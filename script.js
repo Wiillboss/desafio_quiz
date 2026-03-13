@@ -2,6 +2,9 @@ let currentQuestion = 0;
 let correctAnswers = 0;
 showQuestion();
 
+//Events
+document.querySelector('.scoreArea button').addEventListener('click', resetEvent);
+
 
 //functions
 function showQuestion() {
@@ -9,15 +12,15 @@ function showQuestion() {
         let q = questions[currentQuestion];
 
         let pct = Math.floor((currentQuestion / questions.length)*100);
-
         document.querySelector('.progress--bar').style.width = `${pct}%`;
-        document.querySelector('.scorePct').style.color = '#FF0000';
+
+        //document.querySelector('.scorePct').style.color = '#FF0000';
 
         document.querySelector('.scoreArea').style.display = 'none';
         document.querySelector('.questionArea').style.display = 'block';
 
         document.querySelector('.question').innerHTML = q.question;
-        document.querySelector('.options').innerHTML = '';
+        //document.querySelector('.options').innerHTML = '';
 
         let optionsHtml = '';
         for(let i in q.options){
@@ -65,4 +68,10 @@ function finishQuiz() {
     document.querySelector('.scoreArea').style.display = 'block';
     document.querySelector('.questionArea').style.display = 'none';
     document.querySelector('.progress--bar').style.width = `100%`;
+}
+
+function resetEvent() {
+    correctAnswers = 0;
+    currentQuestion = 0;
+    showQuestion();
 }
